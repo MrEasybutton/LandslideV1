@@ -12,7 +12,7 @@ Can your project solution help us live in places where nature is dangerous or ha
 - Vibration sensor
 - DC motor
 - Moisture sensor
-- Trafiic Light RGB
+- Traffic Light RGB
 - LCD Display
 - Force Sensor
 - Vibration motor (IIS)
