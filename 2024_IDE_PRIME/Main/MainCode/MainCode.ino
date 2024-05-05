@@ -1,6 +1,7 @@
 // Include all libraries used in this project.
 #include <LiquidCrystal_I2C.h>
 #include <Servo.h>
+#include "pitches.h"
 
 // Defining Variables Pt 1 (pre-compilation)
 #define PIN_RED    3 
@@ -9,6 +10,8 @@
 
 #define RAIN_PIN 8  
 #define AO_PIN A1 
+
+#define BUZZER_PIN 2
 
 // Call LiquidCrystal address
 LiquidCrystal_I2C lcd(0x3F, 16, 2); 
@@ -51,9 +54,43 @@ byte customChar1[8] = {
 	0b00000
 };
 
+int melody[] = {
+  NOTE_B2, NOTE_B2, NOTE_B2,
+  NOTE_E3, NOTE_E3, NOTE_E3,
+  NOTE_C2, NOTE_B2, NOTE_C2, NOTE_B2,
+
+};
+
+int noteDurations[] = {
+  8, 8, 4,
+  8, 8, 4,
+  8, 8, 8, 8,
+};
+
+
 void VibrationSensor() {
   vib_val = digitalRead(VIB_PIN);
   
+}
+
+void PiezoAlert() {
+  // iterate over the notes of the melody:
+  int size = sizeof(noteDurations) / sizeof(int);
+
+  for (int thisNote = 0; thisNote < size; thisNote++) {
+
+    // to calculate the note duration, take one second divided by the note type.
+    //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
+    int noteDuration = 1000 / noteDurations[thisNote];
+    tone(BUZZER_PIN, melody[thisNote], noteDuration);
+
+    // to distinguish the notes, set a minimum time between them.
+    // the note's duration + 30% seems to work well:
+    int pauseBetweenNotes = noteDuration * 1.30;
+    delay(pauseBetweenNotes);
+    // stop the tone playing:
+    noTone(BUZZER_PIN);
+  }
 }
 
 void RainSensor() {
@@ -155,6 +192,7 @@ void loop()
         lcd.print("LANDSLIDE RISK");
         Traffic_Red();
         Servo_Code();
+        PiezoAlert();
 
       }
       else
@@ -164,6 +202,7 @@ void loop()
         lcd.print("LANDSLIDE RISK");
         Traffic_Red();
         Servo_Code();
+        PiezoAlert();
       }
 
     }
@@ -225,6 +264,7 @@ void loop()
         lcd.print("LANDSLIDE RISK");
         Traffic_Red();
         Servo_Code();
+        PiezoAlert();
       }
       else
       {
@@ -233,6 +273,7 @@ void loop()
         lcd.print("LANDSLIDE RISK");
         Traffic_Red();
         Servo_Code();
+        PiezoAlert();
       }
 
     }
