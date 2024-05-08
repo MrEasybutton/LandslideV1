@@ -23,6 +23,10 @@ const int AirValue = 620;
 const int WaterValue = 310; 
 int soilMoistureValue = 0;
 int soilmoisturepercent = 0;
+// Clock
+const unsigned long interval= 3000;
+unsigned long previousMillis;
+unsigned long currentMillis;
 // Servo Motor Variables
 Servo servo;
 int ax = 30;
@@ -31,6 +35,8 @@ int rainPotency;
 // Vibration Sensor Variable
 int vib_val;
 int VIB_PIN = 7;
+// Bluetooth String Sent
+String sent_info;
 // LCD Custom Characters
 byte customChar[8] = {
 	0b00100,
@@ -178,11 +184,10 @@ void loop()
   VibrationSensor();
   RainSensor();
   SoilMoisture_Capacitive();
-  Serial.println(soilmoisturepercent);
 
   if (vib_val == 1) 
   {
-    Serial.println("Vibrations Detected.");
+
     if (soilmoisturepercent >= 95)
     {
       if (rainPotency >= 200)
@@ -249,12 +254,10 @@ void loop()
     else 
     {
       Serial.print("Soilmoisturepercent may be bugged: ");
-      Serial.print(soilmoisturepercent);
     }
   }
   else 
   {
-    Serial.println("Vibrations not detected.");
     if (soilmoisturepercent >= 95)
     {
       if (rainPotency >= 200)
@@ -274,7 +277,9 @@ void loop()
         Traffic_Red();
         Servo_Code();
         PiezoAlert();
+        
       }
+
 
     }
     else if (soilmoisturepercent >= 20 && soilmoisturepercent < 95)
@@ -322,10 +327,9 @@ void loop()
     else 
     {
       Serial.print("Soilmoisturepercent may be bugged: ");
-      Serial.print(soilmoisturepercent);
     }
   }
-  Serial.println(rainPotency);
+  
   delay(1000);
 }
 
