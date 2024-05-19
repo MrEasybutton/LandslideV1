@@ -61,16 +61,13 @@ byte customChar1[8] = {
 };
 
 int melody[] = {
-  NOTE_B2, NOTE_B2, NOTE_B2,
-  NOTE_E3, NOTE_E3, NOTE_E3,
-  NOTE_C2, NOTE_B2, NOTE_C2, NOTE_B2,
+  NOTE_B3,
 
 };
 
 int noteDurations[] = {
-  8, 8, 4,
-  8, 8, 4,
-  8, 8, 8, 8,
+  2,
+
 };
 
 
@@ -219,7 +216,7 @@ void loop()
         Serial.println("MODERATE SCENARIO!");
         lcd.print("Caution!");
         Traffic_Yellow();
-        Servo_Code();
+        servo.write(90);
       }
       else
       {
@@ -290,7 +287,7 @@ void loop()
         Serial.println("MODERATE SCENARIO!");
         lcd.print("Caution!");
         Traffic_Yellow();
-        Servo_Code();
+        servo.write(90);
 
       }
       else
