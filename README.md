@@ -8,15 +8,16 @@ In 2024, teams will learn more about how we humans affect nature and how nature 
 How can your project solution help us live in harmony with nature? 
 Can your project solution help us live in places where nature is dangerous or harsh, and can they assist us in living a more environmentally friendly lifestyle?
 
-## The stuff we're using
-- Vibration sensor
-- DC motor
-- Moisture sensor
-- Traffic Light RGB
+## Features:
+- Vibration Sensor
+- Rain Sensor
+- Capacitive Moisture Sensor
+- Servo Motor
 - LCD Display
-- Force Sensor
-- Vibration motor (IIS)
-- PIR sensor (extra)
+- Traffic Light RYG LEDs
+- Piezo Buzzer
+- Bluetooth Connectivity
+- Android Application
 
 ## Rationale
 https://www.straitstimes.com/singapore/clementi-landslide-three-sections-of-park-connector-open-but-a-stretch-will-remain-closed-until-end-2023
